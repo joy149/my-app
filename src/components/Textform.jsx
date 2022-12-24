@@ -54,6 +54,11 @@ export default function Textform(props) {
         })
         return count;
     }
+    const copyToClipboard = () => {
+        // Copy the text inside the text field
+        navigator.clipboard.writeText(text);
+        alert("Copied to Clipboard");
+    }
 
   return (
     <>
@@ -66,6 +71,7 @@ export default function Textform(props) {
         <button className='btn btn-primary mx-2' onClick={convertToLowerCase}>Convert to Lowercase</button>
         <button className='btn btn-primary mx-2' onClick={convertToToggleCase}>Convert to ToggleCase</button>
         <button className='btn btn-primary mx-2' onClick={clearText}>Clear Text</button>
+        <button className='btn btn-primary mx-2' onClick={copyToClipboard}>Copy to Clipboard</button>
     </div>
     <div className='container my-3'>
         <h2>Your Text Summary Here :</h2>
