@@ -6,10 +6,12 @@ export default function Textform(props) {
     const convertToUpperCase = () => {
         var newText = text;
         setText(newText.toUpperCase());
+        props.showAlert("Converted to Upper Case", "success")
     }
     const convertToLowerCase = () => {
         var newText = text;
         setText(newText.toLowerCase());
+        props.showAlert("Converted to Lower Case", "success")
     }
     const convertToToggleCase = () => {
         var newText = text;
@@ -26,10 +28,12 @@ export default function Textform(props) {
         })
         //console.log(words);
         setText(words);
+        props.showAlert("Converted to Toggle Case", "success")
     }
     const clearText = () => {
         var newText = '';
         setText(newText);
+        props.showAlert("Text is cleared", "success")
     }
     const onChangeHandler = (event) => {
         setText(event.target.value);
@@ -54,16 +58,17 @@ export default function Textform(props) {
         })
         return count;
     }
+
     const copyToClipboard = () => {
         // Copy the text inside the text field
         navigator.clipboard.writeText(text);
-        alert("Copied to Clipboard");
+        props.showAlert("Copied to Clipboard", "success")
     }
     const handleExtraSpaces = () => {
         var newText = text.split(/[ ]+/);
         setText(newText.join(" "));
+        props.showAlert("Extra Spaces Removed", "success")
     }
-
   return (
     <>
     <div className='container' style={{color : props.mode==='dark'?'white':'black'}}>
