@@ -66,10 +66,10 @@ export default function Textform(props) {
 
   return (
     <>
-    <div className='container'>
+    <div className='container' style={{color : props.mode==='dark'?'white':'black'}}>
         <h2>{props.title}</h2>
         <div className="mb-3">
-        <textarea className="form-control" id="mybox" placeholder='Enter Text' value={text} onChange={onChangeHandler} rows="8"></textarea>
+        <textarea className="form-control" id="mybox" placeholder='Enter Text' value={text} style={{backgroundColor : props.mode==='dark'?'#042743':'white', color : props.mode==='dark'?'white':'black'}} onChange={onChangeHandler} rows="8"></textarea>
         </div>
         <button className='btn btn-primary mx-2' onClick={convertToUpperCase}>Convert to UpperCase</button>
         <button className='btn btn-primary mx-2' onClick={convertToLowerCase}>Convert to Lowercase</button>
@@ -80,7 +80,7 @@ export default function Textform(props) {
         
         
     </div>
-    <div className='container my-3'>
+    <div className='container my-3' style={{color : props.mode==='dark'?'white':'black'}}>
         <h2>Your Text Summary Here :</h2>
         <p>Your Text has {text.split(" ").filter(o=>o).length} words and {text.length} characters</p>
         <p>You will finish reading it in {0.005 * text.split(" ").filter(o=>o).length} minutes</p>
