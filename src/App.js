@@ -10,6 +10,8 @@ import {
   Routes,
 } from 'react-router-dom'
 
+// To-do : Enable dark mode on About component
+
 function App() {
   const [mode, setMode] = useState('light');
   const [alert, setAlert] = useState(null);
@@ -45,7 +47,7 @@ function App() {
       <Routes>
           <Route path="/" element={<Textform title= "Enter the text you want to analyse" mode={mode} alerts={alert} showAlert={showAlert}/>}>
           </Route>
-          <Route path="/about" element={<About />}>
+          <Route path="/about" element={<About />} >
           </Route>
       </Routes>
     </div>

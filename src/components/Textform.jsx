@@ -5,35 +5,53 @@ export default function Textform(props) {
     const [text, setText] = useState('')
     const convertToUpperCase = () => {
         var newText = text;
-        setText(newText.toUpperCase());
-        props.showAlert("Converted to Upper Case", "success")
+        if (text.length!==0) {
+            setText(newText.toUpperCase());
+            props.showAlert("Converted to Upper Case", "success");
+        }
+        else {
+            props.showAlert("Please enter text to analyze", "warning");
+        }
     }
     const convertToLowerCase = () => {
         var newText = text;
-        setText(newText.toLowerCase());
-        props.showAlert("Converted to Lower Case", "success")
+        if (text.length!==0) {
+            setText(newText.toLowerCase());
+            props.showAlert("Converted to Lower Case", "success");
+        }
+        else {
+            props.showAlert("Please enter text to analyze", "warning");
+        }
     }
     const convertToToggleCase = () => {
         var newText = text;
         var words = '';
-        //console.log(newText.split(" ").filter(o=>o).map(o=>o.charAt(0).toLowerCase + o.substring(1, o.length).toUpperCase));
-        //console.log(newText);
-        newText.split(" ").forEach(word => {
-            if (word.length===1) {
-                words += word.toLowerCase() + " ";
-            }
-            else {
-                words += word.charAt(0).toLowerCase() + word.substring(1, word.length).toUpperCase() + " ";
-            }
-        })
         //console.log(words);
-        setText(words);
-        props.showAlert("Converted to Toggle Case", "success")
+        if (text.length!==0) {
+            newText.split(" ").filter(o=>o).forEach(word => {
+                if (word.length===1) {
+                    words += word.toLowerCase() + " ";
+                }
+                else {
+                    words += word.charAt(0).toLowerCase() + word.substring(1, word.length).toUpperCase() + " ";
+                }
+            })
+            setText(words);
+            props.showAlert("Converted to Toggle Case", "success");
+        }
+        else {
+            props.showAlert("Please enter text to analyze", "warning");
+        }
     }
     const clearText = () => {
         var newText = '';
-        setText(newText);
-        props.showAlert("Text is cleared", "success")
+        if (text.length!==0) {
+            setText(newText);
+            props.showAlert("Cleared Text", "success");
+        }
+        else {
+            props.showAlert("No Text to clear", "warning");
+        }
     }
     const onChangeHandler = (event) => {
         setText(event.target.value);
@@ -61,13 +79,23 @@ export default function Textform(props) {
 
     const copyToClipboard = () => {
         // Copy the text inside the text field
-        navigator.clipboard.writeText(text);
-        props.showAlert("Copied to Clipboard", "success")
+        if (text.length!==0) {
+            navigator.clipboard.writeText(text);
+            props.showAlert("Copied to Clipboard", "success");
+        }
+        else {
+            props.showAlert("Nothing to copy", "warning");
+        }
     }
     const handleExtraSpaces = () => {
         var newText = text.split(/[ ]+/);
-        setText(newText.join(" "));
-        props.showAlert("Extra Spaces Removed", "success")
+        if (text.length!==0) {
+            setText(newText.join(" "));
+            props.showAlert("Extra Spaces Removed", "success");
+        }
+        else {
+            props.showAlert("Kindly provide the text to remove spaces", "warning");
+        }
     }
   return (
     <>
@@ -76,12 +104,12 @@ export default function Textform(props) {
         <div className="mb-3">
         <textarea className="form-control" id="mybox" placeholder='Enter Text' value={text} style={{backgroundColor : props.mode==='dark'?'#042743':'white', color : props.mode==='dark'?'white':'black'}} onChange={onChangeHandler} rows="8"></textarea>
         </div>
-        <button className='btn btn-primary mx-2' onClick={convertToUpperCase}>Convert to UpperCase</button>
-        <button className='btn btn-primary mx-2' onClick={convertToLowerCase}>Convert to Lowercase</button>
-        <button className='btn btn-primary mx-2' onClick={convertToToggleCase}>Convert to ToggleCase</button>
-        <button className='btn btn-primary mx-2' onClick={handleExtraSpaces}>Remove Extra Spaces</button>
-        <button className='btn btn-primary mx-2' onClick={copyToClipboard}>Copy to Clipboard</button>
-        <button className='btn btn-primary mx-2' onClick={clearText}>Clear Text</button>
+        <button className='btn btn-primary mx-1 my-1' onClick={convertToUpperCase}>Convert to UpperCase</button>
+        <button className='btn btn-primary mx-1 my-1' onClick={convertToLowerCase}>Convert to Lowercase</button>
+        <button className='btn btn-primary mx-1 my-1' onClick={convertToToggleCase}>Convert to ToggleCase</button>
+        <button className='btn btn-primary mx-1 my-1' onClick={handleExtraSpaces}>Remove Extra Spaces</button>
+        <button className='btn btn-primary mx-1 my-1' onClick={copyToClipboard}>Copy to Clipboard</button>
+        <button className='btn btn-primary mx-1 my-1' onClick={clearText}>Clear Text</button>
         
         
     </div>
